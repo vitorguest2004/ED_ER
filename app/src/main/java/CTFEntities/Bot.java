@@ -1,12 +1,14 @@
 package CTFEntities;
 
+import Collections.EmptyCollectionException;
+
 public class Bot {
 
     private static int botCount = 1;
     private final int id = 0;
     private int location;
     private boolean hasFlag = false;
-    private Algoritmo algorithm;
+    private Algorithm algorithm;
     private boolean blocked = false;
 
     /**
@@ -16,7 +18,7 @@ public class Bot {
      * @param location A localização inicial do bot.
      * @param a O algoritmo associado ao bot.
      */
-    public Bot(int location, Algoritmo a) {
+    public Bot(int location, Algorithm a) {
 //        this.id = contadorBot++;
         this.location = location;
         this.algorithm = a;

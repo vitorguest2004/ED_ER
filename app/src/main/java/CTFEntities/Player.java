@@ -1,5 +1,12 @@
 package CTFEntities;
 
+import Collections.ArrayUnorderedList;
+import Collections.EmptyCollectionException;
+import Collections.LinkedQueue;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Player {
 
     private static int playerCount = 1;
