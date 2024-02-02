@@ -1,5 +1,8 @@
 package CTFEntities;
 
+import java.util.Iterator;
+
+import Collections.EmptyCollectionException;
 import Collections.LinkedQueue;
 
 public class Algorithm {
@@ -17,7 +20,7 @@ public class Algorithm {
      * @param startVertex O vértice de início do caminho.
      * @param endVertex O vértice de destino do caminho.
      */
-    protected void setPathAsDisjkstra(Mapa map, int startVertex, int endVertex) {
+    protected void setPathAsDisjkstra(Map map, int startVertex, int endVertex) {
         Iterator it = map.iteratorShortestPath(startVertex, endVertex);
         it.next();
         while (it.hasNext()) {
@@ -30,7 +33,7 @@ public class Algorithm {
      *
      * @param map O mapa (grafo) no qual calcular o caminho.
      */
-    protected void setPathAsPrim(Mapa map) {
+    protected void setPathAsPrim(Map map) {
         this.path = map.mstNetwork();
     }
 
@@ -42,7 +45,7 @@ public class Algorithm {
      * @param startVertex O vértice de início para a geração do caminho
      * aleatório.
      */
-    protected void setPathAsRandom(Mapa map, int startVertex) {
+    protected void setPathAsRandom(Map map, int startVertex) {
         this.path = map.getRandomPath(startVertex);
     }
 

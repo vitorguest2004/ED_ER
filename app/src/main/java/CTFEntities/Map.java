@@ -1,5 +1,11 @@
 package CTFEntities;
+
 import java.io.Serializable;
+import java.util.Random;
+
+import Collections.ArrayUnorderedList;
+import Collections.LinkedQueue;
+import Collections.Network;
 
 public class Map extends Network<Integer> implements Serializable{
     protected static final double INFINITY = Double.POSITIVE_INFINITY;

@@ -1,5 +1,7 @@
 package CTFEntities;
 
+import java.util.Random;
+
 public class UnidirectionalMap extends Map{
     /**
      * Cria um novo mapa unidirecional com o número de localizações especificado
