@@ -9,20 +9,18 @@ public class Bot {
     private int location;
     private boolean hasFlag = false;
     private Algorithm algorithm;
-    private boolean blocked = false;
 
     /**
      * Cria um novo objeto Bot com uma localização inicial e um algoritmo
      * específico.
      *
      * @param location A localização inicial do bot.
-     * @param a O algoritmo associado ao bot.
+     * @param a        O algoritmo associado ao bot.
      */
     public Bot(int location, Algorithm a) {
-//        this.id = contadorBot++;
+        // this.id = contadorBot++;
         this.location = location;
         this.algorithm = a;
-        this.blocked = false;
         this.hasFlag = false;
     }
 
@@ -48,7 +46,7 @@ public class Bot {
      * Move o bot para o próximo local usando um algoritmo específico.
      *
      * @throws EmptyCollectionException Se a coleção estiver vazia e o próximo
-     * local não puder ser obtido.
+     *                                  local não puder ser obtido.
      */
     protected void moveBot() throws EmptyCollectionException {
         Integer next = this.algorithm.dequeueNext();
@@ -81,26 +79,9 @@ public class Bot {
     }
 
     /**
-     * Define o estado do bot como bloqueado.
+     * Retirna se o bot capturou uma bandeira.
      */
-    protected void setBlocked() {
-        this.blocked = true;
-    }
-
-    /**
-     * Define o estado do bot como não bloqueado.
-     */
-    protected void setNotBlocked() {
-        this.blocked = false;
-    }
-
-    /**
-     * Verifica se o bot está atualmente bloqueado.
-     *
-     * @return true se o bot estiver bloqueado, false caso contrário.
-     */
-    protected boolean isBlocked() {
-        return this.blocked;
+    protected boolean getCapturedState() {
+        return this.hasFlag;
     }
 }
-

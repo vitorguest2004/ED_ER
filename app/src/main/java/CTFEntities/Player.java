@@ -123,48 +123,6 @@ public class Player {
     }
 
     /**
-     * Define o estado do robô na frente da fila como bloqueado.
-     *
-     * @throws EmptyCollectionException Se a fila de robôs estiver vazia.
-     */
-    protected void setCurrentBlocked() throws EmptyCollectionException {
-        Bot bAtual = this.bots.dequeue();
-        bAtual.setBlocked();
-        this.bots.enqueue(bAtual);
-    }
-
-    /**
-     * Define o estado do robô na frente da fila como não bloqueado.
-     *
-     * @throws EmptyCollectionException Se a fila de robôs estiver vazia.
-     */
-    protected void setCurrentNotBlocked() throws EmptyCollectionException {
-        Bot bAtual = this.bots.first();
-        bAtual.setNotBlocked();
-    }
-
-    /**
-     * Retorna o número total de robôs associados a este jogador.
-     *
-     * @return O número total de robôs.
-     * @throws EmptyCollectionException Se a fila de robôs estiver vazia.
-     */
-    protected int numBlocked() throws EmptyCollectionException {
-        LinkedQueue<Bot> savedBots = new LinkedQueue<Bot>();
-        Bot currentBot = this.bots.first();
-        int num = 0;
-        for (int i = 0; i < this.numBots; i++) {
-            currentBot = this.bots.dequeue();
-            savedBots.enqueue(currentBot);
-            if (currentBot.isBlocked()) {
-                num++;
-            }
-        }
-        this.bots = savedBots;
-        return num;
-    }
-
-    /**
      * Retorna o número total de robôs associados a este jogador.
      *
      * @return O número total de robôs.
