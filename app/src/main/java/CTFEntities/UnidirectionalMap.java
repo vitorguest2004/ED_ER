@@ -49,7 +49,7 @@ public class UnidirectionalMap extends Map {
      * @param density A densidade de arestas no mapa.
      */
     @Override
-    protected void createEdges(int numLoc, int density) {
+    public void createEdges(int numLoc, int density) {
         Random random = new Random();
         int vert1;
         int vert2;

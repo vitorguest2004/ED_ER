@@ -4,12 +4,13 @@ import java.util.Iterator;
 
 import Collections.EmptyCollectionException;
 import Collections.LinkedQueue;
+import Interfaces.AlgorithmInterface;
 
-public class Algorithm {
+public class Algorithm implements AlgorithmInterface {
     private LinkedQueue<Integer> path;
     private AlgorithmEnum algorithm;
 
-    public Algorithm() {
+    public Algorithm(){
         this.path = new LinkedQueue<Integer>();
     }
 
@@ -21,7 +22,7 @@ public class Algorithm {
      * @param startVertex Vértice de início.
      * @param endVertex   Vértice de destino.
      */
-    protected void setPathAsDisjkstra(Map map, int startVertex, int endVertex) {
+    public void setPathAsDisjkstra(Map map, int startVertex, int endVertex) {
         Iterator it = map.iteratorShortestPath(startVertex, endVertex);
         it.next();
         while (it.hasNext()) {
@@ -38,7 +39,7 @@ public class Algorithm {
      * @param endVertex   Vértice de destino.
      * @param map         O mapa a ser usado.
      */
-    protected void setPathAsMCP(Map map, int startVertex, int endVertex) {
+    public void setPathAsMCP(Map map, int startVertex, int endVertex) {
         Iterator it = map.iteratorMinimumCostPath(startVertex, startVertex);
         it.next();
         while (it.hasNext()) {
@@ -54,7 +55,7 @@ public class Algorithm {
      * @param map         Mapa a ser usado.
      * @param startVertex Vértice de início.
      */
-    protected void setPathAsRandom(Map map, int startVertex) {
+    public void setPathAsRandom(Map map, int startVertex) {
         this.path = map.getRandomPath(startVertex);
         this.algorithm = AlgorithmEnum.RANDOM;
     }
@@ -73,7 +74,7 @@ public class Algorithm {
      * @return O próximo vértice no caminho.
      * @throws EmptyCollectionException Lançada se houver uma coleção vazia.
      */
-    protected Integer getNext() throws EmptyCollectionException {
+    public Integer getNext() throws EmptyCollectionException {
         return this.path.first();
     }
 
@@ -84,7 +85,7 @@ public class Algorithm {
      * @return Próximo vértice na queue do caminho.
      * @throws EmptyCollectionException Lançada se houver uma coleção vazia.
      */
-    protected Integer dequeueNext() throws EmptyCollectionException {
+    public Integer dequeueNext() throws EmptyCollectionException {
         return this.path.dequeue();
     }
 
@@ -94,7 +95,7 @@ public class Algorithm {
      * @return Enumeração do algoritmo usado.
      * @throws EmptyCollectionException Lançada se houver uma coleção vazia.
      */
-    protected AlgorithmEnum getAlgorithm() throws EmptyCollectionException {
+    public AlgorithmEnum getAlgorithm() throws EmptyCollectionException {
         return this.algorithm;
     }
 }

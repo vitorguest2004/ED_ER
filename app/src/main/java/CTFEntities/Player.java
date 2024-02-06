@@ -3,11 +3,13 @@ package CTFEntities;
 import Collections.ArrayUnorderedList;
 import Collections.EmptyCollectionException;
 import Collections.LinkedQueue;
+import Interfaces.PlayerInterface;
+
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Player {
+public class Player implements PlayerInterface {
 
     private static int playerCount = 1;
     private int id;
@@ -113,7 +115,7 @@ public class Player {
      *
      * @throws EmptyCollectionException Lançada se houver uma coleção vazia.
      */
-    protected void moveBot() throws EmptyCollectionException {
+    public void moveBot() throws EmptyCollectionException {
         Bot currentBot = this.bots.dequeue();
         currentBot.moveBot();
         this.bots.enqueue(currentBot);
@@ -126,7 +128,7 @@ public class Player {
      * @return A próxima posição para o movimento do bot.
      * @throws EmptyCollectionException Lançada se houver uma coleção vazia.
      */
-    protected Integer nextMove() throws EmptyCollectionException {
+    public Integer nextMove() throws EmptyCollectionException {
         return this.bots.first().nextPosition();
     }
 
@@ -135,7 +137,7 @@ public class Player {
      *
      * @return O número de bots atual.
      */
-    protected int getNumBots() {
+    public int getNumBots() {
         return this.numBots;
     }
 

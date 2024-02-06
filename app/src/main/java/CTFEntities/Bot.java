@@ -1,8 +1,9 @@
 package CTFEntities;
 
 import Collections.EmptyCollectionException;
+import Interfaces.BotInterface;
 
-public class Bot {
+public class Bot implements BotInterface {
 
     private final int id = 0;
     private int location;
@@ -47,7 +48,7 @@ public class Bot {
      *
      * @throws EmptyCollectionException Lançada se houver uma coleção vazia.
      */
-    protected void moveBot() throws EmptyCollectionException {
+    public void moveBot() throws EmptyCollectionException {
         Integer nextPosition = this.algorithm.dequeueNext();
 
         this.location = nextPosition;
@@ -59,21 +60,21 @@ public class Bot {
      * @return A próxima posição do algoritmo.
      * @throws EmptyCollectionException Lançada se houver uma coleção vazia.
      */
-    protected Integer nextPosition() throws EmptyCollectionException {
+    public Integer nextPosition() throws EmptyCollectionException {
         return this.algorithm.getNext();
     }
 
     /**
      * Define se o bot capturou uma bandeira como capturado.
      */
-    protected void setCaptured() {
+    public void setCaptured() {
         this.hasFlag = true;
     }
 
     /**
      * Define se o bot capturou uma bandeira como não capturado.
      */
-    protected void setNotCaptured() {
+    public void setNotCaptured() {
         this.hasFlag = false;
     }
 
@@ -83,16 +84,8 @@ public class Bot {
      * @return true se o bot tiver capturado uma bandeira, false se não houve
      * captura
      */
-    protected boolean getCapturedState() {
+    public boolean getCapturedState() {
         return this.hasFlag;
-    }
-
-    public boolean isBlocked() {
-        return blocked;
-    }
-
-    public void setBlocked(boolean blocked) {
-        this.blocked = blocked;
     }
 
     /**
@@ -101,7 +94,7 @@ public class Bot {
      * @return Algoritmo usado para movimentação
      * @throws EmptyCollectionException Lançada se houver uma coleção vazia.
      */
-    protected Algorithm getAlgorithmInUse() throws EmptyCollectionException {
+    public Algorithm getAlgorithmInUse() throws EmptyCollectionException {
         return this.algorithm;
     }
 }

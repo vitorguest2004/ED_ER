@@ -6,8 +6,9 @@ import java.util.Random;
 import Collections.ArrayUnorderedList;
 import Collections.LinkedQueue;
 import Collections.Network;
+import Interfaces.MapInterface;
 
-public class Map extends Network<Integer> implements Serializable {
+public class Map extends Network<Integer> implements Serializable, MapInterface {
     protected static final double INFINITY = Double.POSITIVE_INFINITY;
 
     /**
@@ -41,7 +42,7 @@ public class Map extends Network<Integer> implements Serializable {
      * @param index O índice a ser verificado.
      * @return true se o índice for válido, false caso contrário.
      */
-    protected boolean indexIsValid(int index) {
+    public boolean indexIsValid(int index) {
         return (index >= 0 && index < this.numVertices);
     }
 
@@ -52,7 +53,7 @@ public class Map extends Network<Integer> implements Serializable {
      * @param numLoc  O número de localizações no mapa.
      * @param density A densidade de arestas no mapa.
      */
-    protected void createEdges(int numLoc, int density) {
+    public void createEdges(int numLoc, int density) {
         Random random = new Random();
         int vertex1;
         int vertex2;
@@ -78,7 +79,7 @@ public class Map extends Network<Integer> implements Serializable {
      * @param vertex2 O segundo vértice da aresta.
      * @return true se a aresta existe, false caso contrário.
      */
-    protected boolean edgeExists(int vertex1, int vertex2) {
+    public boolean edgeExists(int vertex1, int vertex2) {
         if (this.adjMatrix[vertex1 - 1][vertex2 - 1] != INFINITY) {
             return true;
         }
@@ -128,7 +129,7 @@ public class Map extends Network<Integer> implements Serializable {
      *                    aleatório.
      * @return Uma fila contendo o caminho aleatório gerado.
      */
-    protected LinkedQueue<Integer> getRandomPath(int startVertex) {
+    public LinkedQueue<Integer> getRandomPath(int startVertex) {
         ArrayUnorderedList<Integer> visited = new ArrayUnorderedList<Integer>();
         Random random = new Random();
         int currentVertex = startVertex;
