@@ -8,11 +8,11 @@ import java.io.ObjectOutputStream;
 
 public class SaveData {
      /**
-     * Exporta um objeto do tipo Mapa para um arquivo.
+     * Exporta uma instância do tipo Map para um ficheiro.
      *
-     * @param map O objeto Mapa a ser exportado.
+     * @param map A instância de Map a ser exportado.
      * @throws IOException Se ocorrer um erro durante a operação de escrita no
-     * arquivo.
+     * ficheiro.
      */
     public static void exportMap(Map map) throws IOException {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("ExportedMap.txt"));
@@ -22,12 +22,12 @@ public class SaveData {
     }
 
     /**
-     * Importa um objeto do tipo Mapa de um arquivo.
+     * Importa uma instância do tipo Map de um ficheiro.
      *
-     * @return O objeto Mapa importado.
+     * @return A instância de Map importada.
      * @throws IOException Se ocorrer um erro durante a operação de leitura do
-     * arquivo.
-     * @throws ClassNotFoundException Se a classe do objeto lido do arquivo não
+     * ficheiro.
+     * @throws ClassNotFoundException Se a classe do objeto lido do ficheiro não
      * for encontrada.
      */
     public static Map importMap() throws IOException, ClassNotFoundException {
