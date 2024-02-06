@@ -43,7 +43,7 @@ public class main {
                         System.out.println("Qual o tipo de mapa pretendido:\n 1-Caminhos bidirecionais não orientados\n  2-Caminhos unidirecionais orientados?");
                         option = Input.inputInt();
                         switch (option) {
-                            case 1: //bidirecionais
+                            case 1: // bidirecionais
                                 Map map1 = new Map(vertexes, density);
                                 System.out.println(map1.adjacenciesPrint());
 
@@ -124,7 +124,7 @@ public class main {
 
                                 break;
 
-                            case 2: //unidirecionais
+                            case 2: // unidirecionais
                                 Map map2 = new UnidirectionalMap(vertexes, density);
                                 System.out.println(map2.adjacenciesPrint());
 
@@ -193,7 +193,7 @@ public class main {
                     break;
 
                 case 2:
-                    //importar mapa 
+                    // importar mapa
                     Map map = null;
                     try {
                         map = SaveData.importMap();
@@ -213,13 +213,31 @@ public class main {
                     do {
                         System.out.println("Jogador" + game2.getCurrentPlayer().getId() + " insira o vertice da sua base");
                         base = Input.inputInt();
-                        game2.createBaseAndFlag(base);
+                        if (base <= 0 || base > vertexes) {
+                            System.out.println("Base inválida");
+                        } else {
+                            try {
+                                game2.createBaseAndFlag(base);
+                            } catch (PositionOccupiedException ex) {
+                                System.out.println(ex.getMessage());
+                                base = -1;
+                            }
+                        }
                     } while (base <= 0 || base > vertexes);
 
                     do {
                         System.out.println("Jogador" + game2.getCurrentPlayer().getId() + " insira o vertice da sua base");
                         base = Input.inputInt();
-                        game2.createBaseAndFlag(base);
+                        if (base <= 0 || base > vertexes) {
+                            System.out.println("Base inválida");
+                        } else {
+                            try {
+                                game2.createBaseAndFlag(base);
+                            } catch (PositionOccupiedException ex) {
+                                System.out.println(ex.getMessage());
+                                base = -1;
+                            }
+                        }
                     } while (base <= 0 || base > vertexes);
 
                     int[] botNumbers1 = new int[2];
