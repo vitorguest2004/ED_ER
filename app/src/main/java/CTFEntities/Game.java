@@ -178,13 +178,7 @@ public class Game {
     public void moveBot() throws EmptyCollectionException, NoMorePositionsException {
         Player currentPlayer = this.players.first();
 
-        if (currentPlayer.getBots().first().nextPosition() != null) {
-            currentPlayer.getBots().first().setBlocked(true);
-            throw new NoMorePositionsException("O bot não tem mais posições para se mover");
-        }
-
-        if (currentPlayer.getBots().first().isBlocked() == false && !currentPlayer.getBots().isEmpty()
-                && currentPlayer.getBots().first().getAlgorithmInUse().getNext() != null) {
+        if (!currentPlayer.getBots().isEmpty() && currentPlayer.getBots().first().getAlgorithmInUse().getNext() != null) {
 
             int nextPosition = currentPlayer.nextMove();
 
