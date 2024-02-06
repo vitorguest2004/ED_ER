@@ -7,29 +7,29 @@ import Collections.ArrayUnorderedList;
 import Collections.LinkedQueue;
 import Collections.Network;
 
-public class Map extends Network<Integer> implements Serializable{
+public class Map extends Network<Integer> implements Serializable {
     protected static final double INFINITY = Double.POSITIVE_INFINITY;
 
     /**
-     * Cria um novo mapa com o número de localizações especificado e densidade
-     * de arestas.
+     * Cria um novo mapa com o número de localizações e densidade
+     * de arestas específicos.
      *
-     * @param numLoc O número de localizações no mapa.
+     * @param numLoc  O número de localizações no mapa.
      * @param density A densidade de arestas no mapa.
      */
     public Map(int numLoc, int density) {
         super();
-        this.defineVertex(numLoc);
-        this.defineEdges(numLoc, density);
+        this.createVertex(numLoc);
+        this.createEdges(numLoc, density);
     }
 
     /**
-     * Adiciona vértices ao mapa com base no número especificado de
+     * Adiciona vértices ao mapa com base no número específico de
      * localizações.
      *
      * @param numLoc O número de localizações no mapa.
      */
-    private void defineVertex(int numLoc) {
+    private void createVertex(int numLoc) {
         for (int i = 1; i < numLoc + 1; i++) {
             this.addVertex(i);
         }
@@ -47,27 +47,27 @@ public class Map extends Network<Integer> implements Serializable{
 
     /**
      * Define as arestas do mapa com base no número de localizações e densidade
-     * especificados.
+     * específicos.
      *
-     * @param numLoc O número de localizações no mapa.
+     * @param numLoc  O número de localizações no mapa.
      * @param density A densidade de arestas no mapa.
      */
-    protected void defineEdges(int numLoc, int density) {
+    protected void createEdges(int numLoc, int density) {
         Random random = new Random();
-        int vert1;
-        int vert2;
-        int numArestas = 0;
-        numArestas = (int) (((numLoc * (numLoc - 1)) / 2) * density / 100);
+        int vertex1;
+        int vertex2;
+        int numEdges = 0;
+        numEdges = (int) (((numLoc * (numLoc - 1)) / 2) * density / 100);
 
-        for (int i = 0; i < numArestas; i++) {
+        for (int i = 0; i < numEdges; i++) {
             do {
-                vert1 = random.nextInt(1, numLoc + 1);
+                vertex1 = random.nextInt(1, numLoc + 1);
                 do {
-                    vert2 = random.nextInt(1, numLoc + 1);
-                } while (vert2 == vert1);
-            } while (edgeExists(vert1, vert2));
+                    vertex2 = random.nextInt(1, numLoc + 1);
+                } while (vertex2 == vertex1);
+            } while (edgeExists(vertex1, vertex2));
 
-            addEdge(vert1, vert2, random.nextInt(1, 16));
+            addEdge(vertex1, vertex2, random.nextInt(1, 16));
         }
     }
 
@@ -86,11 +86,11 @@ public class Map extends Network<Integer> implements Serializable{
     }
 
     /**
-     * Retorna uma representação em string da matriz de adjacência do mapa.
+     * Devolve uma representação genérica em string da matriz de adjacência do mapa.
      *
      * @return Uma representação em string da matriz de adjacência.
      */
-    public String adjPrint1() {
+    public String adjacenciesPrint() {
         StringBuilder s = new StringBuilder();
 
         s.append("   |");
@@ -111,7 +111,7 @@ public class Map extends Network<Integer> implements Serializable{
             for (int j = 0; j < this.numVertices; j++) {
                 int weight = (int) adjMatrix[i][j];
                 if (weight == Integer.MAX_VALUE) {
-                    s.append("  Inf");
+                    s.append("  N.A");
                 } else {
                     s.append(String.format("%5d", weight));
                 }
@@ -125,7 +125,7 @@ public class Map extends Network<Integer> implements Serializable{
      * Retorna um caminho aleatório gerado a partir de um vértice inicial.
      *
      * @param startVertex O vértice de início para a geração do caminho
-     * aleatório.
+     *                    aleatório.
      * @return Uma fila contendo o caminho aleatório gerado.
      */
     protected LinkedQueue<Integer> getRandomPath(int startVertex) {
@@ -134,14 +134,14 @@ public class Map extends Network<Integer> implements Serializable{
         int currentVertex = startVertex;
         int nextVertex = -1;
         int noPlay = 0;
-        int tamanho = 0;
+        int size = 0;
         ArrayUnorderedList<Integer> listvertex;
         LinkedQueue<Integer> path = new LinkedQueue<Integer>();
         do {
             listvertex = this.checkSurroundings(currentVertex);
-            tamanho = random.nextInt(listvertex.size() - 1) + 1;
+            size = random.nextInt(listvertex.size() - 1) + 1;
 
-            for (int i = 0; i < tamanho; i++) {
+            for (int i = 0; i < size; i++) {
                 nextVertex = (int) listvertex.iterator().next();
             }
 
@@ -157,10 +157,10 @@ public class Map extends Network<Integer> implements Serializable{
     }
 
     /**
-     * Retorna uma lista de vértices circundantes a um vértice específico.
+     * Devolve uma lista não ordenada de vértices vizinhos a um vértice específico.
      *
-     * @param start O vértice para o qual verificar os vértices circundantes.
-     * @return Uma lista de vértices circundantes.
+     * @param start Vértice usado para verificar.
+     * @return Uma lista não ordenada de vértices vizinhos.
      */
     private ArrayUnorderedList<Integer> checkSurroundings(Integer start) {
         ArrayUnorderedList<Integer> list = new ArrayUnorderedList<Integer>();

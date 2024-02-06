@@ -2,10 +2,10 @@ package CTFEntities;
 
 import java.util.Random;
 
-public class UnidirectionalMap extends Map{
+public class UnidirectionalMap extends Map {
     /**
-     * Cria um novo mapa unidirecional com o número de localizações especificado
-     * e densidade de arestas.
+     * Cria um novo mapa unidirecional com o número de localizações
+     * e densidade de arestas específicos.
      *
      * @param numLoc O número de localizações no mapa.
      * @param density A densidade de arestas no mapa.
@@ -15,12 +15,12 @@ public class UnidirectionalMap extends Map{
     }
 
     /**
-     * Adiciona uma aresta unidirecional entre dois vértices com um peso
-     * especificado.
+     * Adiciona uma aresta entre dois vértices com um peso
+     * específico.
      *
      * @param vertex1 O primeiro vértice da aresta.
      * @param vertex2 O segundo vértice da aresta.
-     * @param weight O peso da aresta.
+     * @param weight  O peso da aresta.
      */
     @Override
     public void addEdge(Integer vertex1, Integer vertex2, double weight) {
@@ -29,7 +29,7 @@ public class UnidirectionalMap extends Map{
 
     /**
      * Adiciona uma aresta unidirecional entre dois índices com um peso
-     * especificado.
+     * específico.
      *
      * @param index1 O índice do primeiro vértice da aresta.
      * @param index2 O índice do segundo vértice da aresta.
@@ -43,13 +43,13 @@ public class UnidirectionalMap extends Map{
 
     /**
      * Define as arestas do mapa unidirecional com base no número de
-     * localizações e densidade especificados.
+     * localizações e densidade específicos.
      *
-     * @param numLoc O número de localizações no mapa.
+     * @param numLoc  O número de localizações no mapa.
      * @param density A densidade de arestas no mapa.
      */
     @Override
-    protected void defineEdges(int numLoc, int density) {
+    protected void createEdges(int numLoc, int density) {
         Random random = new Random();
         int vert1;
         int vert2;
@@ -68,7 +68,7 @@ public class UnidirectionalMap extends Map{
     }
 
     /**
-     * Remove a aresta entre dois vértices especificados no mapa unidirecional.
+     * Remove a aresta entre dois vértices específicos no mapa unidirecional.
      *
      * @param vertex1 O primeiro vértice da aresta a ser removida.
      * @param vertex2 O segundo vértice da aresta a ser removida.

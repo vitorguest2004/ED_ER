@@ -4,10 +4,10 @@ import Collections.EmptyCollectionException;
 
 public class Bot {
 
-    private static int botCount = 1;
     private final int id = 0;
     private int location;
-    private boolean hasFlag = false;
+    private boolean hasFlag;
+    private boolean blocked;
     private Algorithm algorithm;
 
     /**
@@ -15,13 +15,13 @@ public class Bot {
      * específico.
      *
      * @param location A localização inicial do bot.
-     * @param a        O algoritmo associado ao bot.
+     * @param a O algoritmo associado ao bot.
      */
     public Bot(int location, Algorithm a) {
-        // this.id = contadorBot++;
         this.location = location;
         this.algorithm = a;
         this.hasFlag = false;
+        this.blocked = false;
     }
 
     /**
@@ -45,20 +45,19 @@ public class Bot {
     /**
      * Move o bot para o próximo local usando um algoritmo específico.
      *
-     * @throws EmptyCollectionException Se a coleção estiver vazia e o próximo
-     *                                  local não puder ser obtido.
+     * @throws EmptyCollectionException Lançada se houver uma coleção vazia.
      */
     protected void moveBot() throws EmptyCollectionException {
-        Integer next = this.algorithm.dequeueNext();
+        Integer nextPosition = this.algorithm.dequeueNext();
 
-        this.location = next;
+        this.location = nextPosition;
     }
 
     /**
-     * Retorna a próxima posição calculada pelo algoritmo associado ao bot.
+     * Retorna a próxima posição do algoritmo.
      *
-     * @return A próxima posição calculada pelo algoritmo.
-     * @throws EmptyCollectionException Se a coleção subjacente estiver vazia.
+     * @return A próxima posição do algoritmo.
+     * @throws EmptyCollectionException Lançada se houver uma coleção vazia.
      */
     protected Integer nextPosition() throws EmptyCollectionException {
         return this.algorithm.getNext();
@@ -79,9 +78,30 @@ public class Bot {
     }
 
     /**
-     * Retirna se o bot capturou uma bandeira.
+     * Retorna se o bot capturou uma bandeira.
+     *
+     * @return true se o bot tiver capturado uma bandeira, false se não houve
+     * captura
      */
     protected boolean getCapturedState() {
         return this.hasFlag;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    /**
+     * Devolve o algoritmo usado para a movimentação.
+     *
+     * @return Algoritmo usado para movimentação
+     * @throws EmptyCollectionException Lançada se houver uma coleção vazia.
+     */
+    protected Algorithm getAlgorithmInUse() throws EmptyCollectionException {
+        return this.algorithm;
     }
 }

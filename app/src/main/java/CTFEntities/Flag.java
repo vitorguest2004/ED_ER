@@ -2,15 +2,14 @@ package CTFEntities;
 
 public class Flag {
 
-    private final int location;
+    private int location;
     private final Player player;
-    
+
     /**
-     * Cria um novo objeto Flag com uma localização inicial e associado a um
-     * jogador específico.
+     * Cria uma instância de uma bandeira.
      *
-     * @param localizacao A localização inicial da bandeira.
-     * @param jogador O jogador ao qual a bandeira está associada.
+     * @param location Localização da bandeira.
+     * @param player   Jogador respetivo.
      */
     public Flag(int location, Player player) {
         this.location = location;
@@ -18,9 +17,18 @@ public class Flag {
     }
 
     /**
-     * Obtém a localização atual da bandeira.
+     * Define a localização da bandeira.
      *
-     * @return A localização atual da bandeira.
+     * @param location Localização da bandeira.
+     */
+    public void setLocation(int location) {
+        this.location = location;
+    }
+
+    /**
+     * Devolve a localização da bandeira.
+     *
+     * @return Localização da bandeira.
      */
     public int getLocation() {
         return location;

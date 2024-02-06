@@ -17,7 +17,7 @@ public class Player {
     private int numBots;
 
     /**
-     * Cria um novo jogador com uma fila de robôs associada.
+     * Cria um novo jogador com uma queue de bots pré-definida.
      *
      * @param bots A fila de robôs do jogador.
      */
@@ -27,8 +27,7 @@ public class Player {
     }
 
     /**
-     * Cria um novo jogador sem associar uma fila de robôs inicial. O jogador
-     * pode adicionar uma fila de robôs posteriormente usando o método addBots.
+     * Cria uma instância de jogador com uma queue vazia
      */
     public Player() {
         this.id = playerCount++;
@@ -36,43 +35,43 @@ public class Player {
     }
 
     /**
-     * Obtém o identificador único atribuído a este jogador.
+     * Obtém o ID do jogador.
      *
-     * @return O identificador único do jogador.
+     * @return O ID do jogador.
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Adiciona uma bandeira associada a este jogador.
+     * Adiciona uma bandeira ao jogador.
      *
-     * @param bandeira A bandeira a ser associada ao jogador.
+     * @param bandeira A bandeira a ser adicionada ao jogador.
      */
-    public void addBandeira(Flag bandeira) {
-        this.flag = bandeira;
+    public void addBandeira(Flag flag) {
+        this.flag = flag;
     }
 
     /**
-     * Adiciona uma base associada a este jogador.
+     * Adiciona uma base ao jogador.
      *
-     * @param base A base a ser associada ao jogador.
+     * @param base A base a ser adicionada ao jogador.
      */
     public void addBase(Base base) {
         this.base = base;
     }
 
     /**
-     * Obtém a fila de robôs associada a este jogador.
+     * Devolve a queue de bots do jogador.
      *
-     * @return A fila de robôs do jogador.
+     * @return A queue de robôs do jogador.
      */
     public LinkedQueue<Bot> getBots() {
         return bots;
     }
 
     /**
-     * Adiciona um robô à fila de robôs associada a este jogador.
+     * Adiciona um bot à queue de bots do jogador.
      *
      * @param bot O robô a ser adicionado à fila.
      */
@@ -82,7 +81,7 @@ public class Player {
     }
 
     /**
-     * Obtém a posição atual da bandeira associada a este jogador.
+     * Devolve a posição atual da bandeira do jogador.
      *
      * @return A posição da bandeira no mapa.
      */
@@ -91,7 +90,16 @@ public class Player {
     }
 
     /**
-     * Obtém a posição atual da base associada a este jogador.
+     * Define a posição atual da bandeira do jogador.
+     *
+     * @param location Localização da bandeira a ser definida
+     */
+    public void setFlagPosition(int location) {
+        this.flag.setLocation(location);
+    }
+
+    /**
+     * Devolve a posição atual da base do jogador.
      *
      * @return A posição da base no mapa.
      */
@@ -100,46 +108,46 @@ public class Player {
     }
 
     /**
-     * Move o robô na frente da fila para uma nova posição, atualizando seu
-     * estado.
+     * Movimenta o bot para a frente da queue para uma nova posição, atualizando
+     * o seu estado.
      *
-     * @throws EmptyCollectionException Se a fila de robôs estiver vazia.
+     * @throws EmptyCollectionException Lançada se houver uma coleção vazia.
      */
     protected void moveBot() throws EmptyCollectionException {
-        Bot bAtual = this.bots.dequeue();
-        bAtual.moveBot();
-        this.bots.enqueue(bAtual);
+        Bot currentBot = this.bots.dequeue();
+        currentBot.moveBot();
+        this.bots.enqueue(currentBot);
     }
 
     /**
-     * Retorna a próxima posição para o próximo movimento do robô na frente da
-     * fila.
+     * Devolve a próxima posição para o próximo movimento do bot na frente da
+     * queue.
      *
-     * @return A próxima posição para o movimento do robô.
-     * @throws EmptyCollectionException Se a fila de robôs estiver vazia.
+     * @return A próxima posição para o movimento do bot.
+     * @throws EmptyCollectionException Lançada se houver uma coleção vazia.
      */
     protected Integer nextMove() throws EmptyCollectionException {
         return this.bots.first().nextPosition();
     }
 
     /**
-     * Retorna o número total de robôs associados a este jogador.
+     * Devolve o número total de bots do jogador.
      *
-     * @return O número total de robôs.
+     * @return O número de bots atual.
      */
     protected int getNumBots() {
         return this.numBots;
     }
 
     /**
-     * Obtém um iterador das posições dos bots.
+     * Devolve um iterador das posições dos bots.
      *
-     * @return Um iterador contendo as posições dos bots.
+     * @return Um iterador com as posições dos bots.
      */
     public Iterator getBotsPositions() {
         ArrayUnorderedList<Integer> positions = new ArrayUnorderedList<Integer>();
         LinkedQueue<Bot> savedBots = new LinkedQueue<Bot>();
-        for (int i = 0; i < this.numBots; i++) {
+        while (!this.bots.isEmpty()) {
             try {
                 positions.addToRear(this.bots.first().getLocation());
                 savedBots.enqueue(this.bots.dequeue());
@@ -150,4 +158,5 @@ public class Player {
         this.bots = savedBots;
         return positions.iterator();
     }
+
 }
