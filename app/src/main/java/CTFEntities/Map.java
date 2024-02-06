@@ -172,4 +172,13 @@ public class Map extends Network<Integer> implements Serializable, MapInterface 
         }
         return list;
     }
+
+    /**
+     * Atribui um array de vertices ao array de vertices inicializado.
+     *
+     * @param vertices Array de vertices que será atribuido.
+     */
+    public void setVertices(Integer[] vertices) {
+        this.vertices = vertices;
+    }
 }

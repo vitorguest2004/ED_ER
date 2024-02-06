@@ -20,7 +20,8 @@ public class main {
      * @throws Exceptions.PositionOccupiedException
      * @throws Exceptions.NoMorePositionsException
      */
-    public static void main(String[] args) throws EmptyCollectionException, PositionOccupiedException, NoMorePositionsException {
+    public static void main(String[] args)
+            throws EmptyCollectionException, PositionOccupiedException, NoMorePositionsException {
         int option = 0, vertexes, density, base, bot;
 
         System.out.println("Início do jogo!");
@@ -40,7 +41,8 @@ public class main {
                     } while (density < 0 || density >= 100);
 
                     do {
-                        System.out.println("Qual o tipo de mapa pretendido:\n 1-Caminhos bidirecionais não orientados\n  2-Caminhos unidirecionais orientados?");
+                        System.out.println(
+                                "Qual o tipo de mapa pretendido:\n 1-Caminhos bidirecionais não orientados\n  2-Caminhos unidirecionais orientados?");
                         option = Input.inputInt();
                         switch (option) {
                             case 1: // bidirecionais
@@ -52,7 +54,8 @@ public class main {
                                 game.createPlayer();
 
                                 do {
-                                    System.out.println("Jogador" + game.getCurrentPlayer().getId() + " insira o vertice da sua base");
+                                    System.out.println("Jogador" + game.getCurrentPlayer().getId()
+                                            + " insira o vertice da sua base");
                                     base = Input.inputInt();
                                     if (base <= 0 || base > vertexes) {
                                         System.out.println("Base inválida");
@@ -67,7 +70,8 @@ public class main {
                                 } while (base <= 0 || base > vertexes);
 
                                 do {
-                                    System.out.println("Jogador" + game.getCurrentPlayer().getId() + " insira o vertice da sua base");
+                                    System.out.println("Jogador" + game.getCurrentPlayer().getId()
+                                            + " insira o vertice da sua base");
                                     base = Input.inputInt();
                                     if (base <= 0 || base > vertexes) {
                                         System.out.println("Base inválida");
@@ -96,7 +100,8 @@ public class main {
                                 for (int playerIndex = 0; playerIndex < 2; playerIndex++) {
                                     for (int i = 0; i < botNumbers[playerIndex]; i++) {
                                         System.out.println("Jogador " + (playerIndex + 1));
-                                        System.out.println("Qual o algoritmo pretendido: (1-Dijkstra 2-MCP(caminho de custo mínimo) 3-Aleatório)");
+                                        System.out.println(
+                                                "Qual o algoritmo pretendido: (1-Dijkstra 2-MCP(caminho de custo mínimo) 3-Aleatório)");
                                         bot = Input.inputInt();
                                         try {
                                             game.addBot(bot, playerIndex + 1);
@@ -133,13 +138,15 @@ public class main {
                                 game1.createPlayer();
 
                                 do {
-                                    System.out.println("Jogador" + game1.getCurrentPlayer().getId() + " insira o vertice da sua base");
+                                    System.out.println("Jogador" + game1.getCurrentPlayer().getId()
+                                            + " insira o vertice da sua base");
                                     base = Input.inputInt();
                                     game1.createBaseAndFlag(base);
                                 } while (base <= 0 || base > vertexes);
 
                                 do {
-                                    System.out.println("Jogador" + game1.getCurrentPlayer().getId() + " insira o vertice da sua base");
+                                    System.out.println("Jogador" + game1.getCurrentPlayer().getId()
+                                            + " insira o vertice da sua base");
                                     base = Input.inputInt();
                                     game1.createBaseAndFlag(base);
                                 } while (base <= 0 || base > vertexes);
@@ -159,7 +166,8 @@ public class main {
                                 for (int playerIndex = 0; playerIndex < 2; playerIndex++) {
                                     for (int i = 0; i < botNumbers1[playerIndex]; i++) {
                                         System.out.println("Jogador " + (playerIndex + 1));
-                                        System.out.println("Qual o algoritmo pretendido: (1-Dijkstra 2-MCP(caminho de custo mínimo) 3-Aleatório)");
+                                        System.out.println(
+                                                "Qual o algoritmo pretendido: (1-Dijkstra 2-MCP(caminho de custo mínimo) 3-Aleatório)");
                                         bot = Input.inputInt();
                                         try {
                                             game1.addBot(bot, playerIndex + 1);
@@ -205,13 +213,21 @@ public class main {
                     }
 
                     vertexes = map.size();
+                    Integer[] vertexesArray = new Integer[vertexes];
+
+                    for (int i = 0; i < vertexes; i++) {
+                        vertexesArray[i] = i + 1;
+                    }
+
+                    map.setVertices(vertexesArray);
 
                     Game game2 = new Game(map);
                     game2.createPlayer();
                     game2.createPlayer();
 
                     do {
-                        System.out.println("Jogador" + game2.getCurrentPlayer().getId() + " insira o vertice da sua base");
+                        System.out.println(
+                                "Jogador" + game2.getCurrentPlayer().getId() + " insira o vertice da sua base");
                         base = Input.inputInt();
                         if (base <= 0 || base > vertexes) {
                             System.out.println("Base inválida");
@@ -226,7 +242,8 @@ public class main {
                     } while (base <= 0 || base > vertexes);
 
                     do {
-                        System.out.println("Jogador" + game2.getCurrentPlayer().getId() + " insira o vertice da sua base");
+                        System.out.println(
+                                "Jogador" + game2.getCurrentPlayer().getId() + " insira o vertice da sua base");
                         base = Input.inputInt();
                         if (base <= 0 || base > vertexes) {
                             System.out.println("Base inválida");
@@ -255,7 +272,8 @@ public class main {
                     for (int playerIndex = 0; playerIndex < 2; playerIndex++) {
                         for (int i = 0; i < botNumbers1[playerIndex]; i++) {
                             System.out.println("Jogador " + (playerIndex + 1));
-                            System.out.println("Qual o algoritmo pretendido: (1-Dijkstra 2-MCP(caminho de custo mínimo) 3-Aleatório)");
+                            System.out.println(
+                                    "Qual o algoritmo pretendido: (1-Dijkstra 2-MCP(caminho de custo mínimo) 3-Aleatório)");
                             bot = Input.inputInt();
                             try {
                                 game2.addBot(bot, playerIndex + 1);
