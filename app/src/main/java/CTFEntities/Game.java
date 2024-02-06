@@ -37,15 +37,20 @@ public class Game {
             System.out.println("Mapa");
             this.map.adjacenciesPrint();
 
-            LinkedQueue<Player> savedPlayers = new LinkedQueue<Player>();
+            Player currentPlayer = getCurrentPlayer();
+            Player opponentPlayer = getOpponentPlayer(currentPlayer);
 
-            System.out.println("Posicão da base do jogador " + this.players.first().getId());
-            System.out.println("Posição: " + this.players.first().getBasePosition());
-            System.out.println("Posicão da bandeira do jogador " + this.players.first().getId());
-            System.out.println("Posição: " + this.players.first().getFlagPosition());
+            System.out.println("Posicão da base do jogador " + currentPlayer.getId());
+            System.out.println("Posição: " + currentPlayer.getBasePosition());
 
-            System.out.println("Posicão dos bots do jogador " + this.players.first().getId());
-            Iterator pos1 = this.players.first().getBotsPositions();
+            System.out.println("Posicão da bandeira do jogador " + currentPlayer.getId());
+            System.out.println("Posição: " + currentPlayer.getFlagPosition());
+
+            System.out.println("Posicão da bandeira do jogador " + opponentPlayer.getId());
+            System.out.println("Posição: " + opponentPlayer.getFlagPosition());
+
+            System.out.println("Posicão dos bots do jogador " + currentPlayer.getId());
+            Iterator pos1 = currentPlayer.getBotsPositions();
             while (pos1.hasNext()) {
                 System.out.println("Posição: " + pos1.next());
             }
@@ -178,7 +183,8 @@ public class Game {
     public void moveBot() throws EmptyCollectionException, NoMorePositionsException {
         Player currentPlayer = this.players.first();
 
-        if (!currentPlayer.getBots().isEmpty() && currentPlayer.getBots().first().getAlgorithmInUse().getNext() != null) {
+        if (!currentPlayer.getBots().isEmpty()
+                && currentPlayer.getBots().first().getAlgorithmInUse().getNext() != null) {
 
             int nextPosition = currentPlayer.nextMove();
 
