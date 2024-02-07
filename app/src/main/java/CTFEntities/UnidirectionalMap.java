@@ -7,11 +7,11 @@ public class UnidirectionalMap extends Map {
      * Cria um novo mapa unidirecional com o número de localizações
      * e densidade de arestas específicos.
      *
-     * @param numLoc O número de localizações no mapa.
+     * @param locationsNumber O número de localizações no mapa.
      * @param density A densidade de arestas no mapa.
      */
-    public UnidirectionalMap(int numLoc, int density) {
-        super(numLoc, density);
+    public UnidirectionalMap(int locationsNumber, int density) {
+        super(locationsNumber, density);
     }
 
     /**
@@ -45,21 +45,21 @@ public class UnidirectionalMap extends Map {
      * Define as arestas do mapa unidirecional com base no número de
      * localizações e densidade específicos.
      *
-     * @param numLoc  O número de localizações no mapa.
+     * @param locationsNumber  O número de localizações no mapa.
      * @param density A densidade de arestas no mapa.
      */
     @Override
-    public void createEdges(int numLoc, int density) {
+    public void createEdges(int locationsNumber, int density) {
         Random random = new Random();
         int vert1;
         int vert2;
-        int numArestas = (int) ((numLoc * (numLoc - 1)) * density / 100);
+        int numArestas = (int) ((locationsNumber * (locationsNumber - 1)) * density / 100);
 
         for (int i = 0; i < numArestas; i++) {
             do {
-                vert1 = random.nextInt(1, numLoc + 1);
+                vert1 = random.nextInt(1, locationsNumber + 1);
                 do {
-                    vert2 = random.nextInt(1, numLoc + 1);
+                    vert2 = random.nextInt(1, locationsNumber + 1);
                 } while (vert2 == vert1);
             } while (edgeExists(vert1, vert2));
 

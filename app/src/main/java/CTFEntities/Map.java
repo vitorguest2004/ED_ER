@@ -15,23 +15,23 @@ public class Map extends Network<Integer> implements Serializable, MapInterface 
      * Cria um novo mapa com o número de localizações e densidade
      * de arestas específicos.
      *
-     * @param numLoc  O número de localizações no mapa.
+     * @param locationsNumber  O número de localizações no mapa.
      * @param density A densidade de arestas no mapa.
      */
-    public Map(int numLoc, int density) {
+    public Map(int locationsNumber, int density) {
         super();
-        this.createVertex(numLoc);
-        this.createEdges(numLoc, density);
+        this.createVertex(locationsNumber);
+        this.createEdges(locationsNumber, density);
     }
 
     /**
      * Adiciona vértices ao mapa com base no número específico de
      * localizações.
      *
-     * @param numLoc O número de localizações no mapa.
+     * @param locationsNumber O número de localizações no mapa.
      */
-    private void createVertex(int numLoc) {
-        for (int i = 1; i < numLoc + 1; i++) {
+    private void createVertex(int locationsNumber) {
+        for (int i = 1; i < locationsNumber + 1; i++) {
             this.addVertex(i);
         }
     }
@@ -50,21 +50,21 @@ public class Map extends Network<Integer> implements Serializable, MapInterface 
      * Define as arestas do mapa com base no número de localizações e densidade
      * específicos.
      *
-     * @param numLoc  O número de localizações no mapa.
+     * @param locationsNumber O número de localizações no mapa.
      * @param density A densidade de arestas no mapa.
      */
-    public void createEdges(int numLoc, int density) {
+    public void createEdges(int locationsNumber, int density) {
         Random random = new Random();
         int vertex1;
         int vertex2;
         int numEdges = 0;
-        numEdges = (int) (((numLoc * (numLoc - 1)) / 2) * density / 100);
+        numEdges = (int) (((locationsNumber * (locationsNumber - 1)) / 2) * density / 100);
 
         for (int i = 0; i < numEdges; i++) {
             do {
-                vertex1 = random.nextInt(1, numLoc + 1);
+                vertex1 = random.nextInt(1, locationsNumber + 1);
                 do {
-                    vertex2 = random.nextInt(1, numLoc + 1);
+                    vertex2 = random.nextInt(1, locationsNumber + 1);
                 } while (vertex2 == vertex1);
             } while (edgeExists(vertex1, vertex2));
 

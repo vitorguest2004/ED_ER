@@ -8,7 +8,6 @@ public class Bot implements BotInterface {
     private final int id = 0;
     private int location;
     private boolean hasFlag;
-    private boolean blocked;
     private Algorithm algorithm;
 
     /**
@@ -22,7 +21,6 @@ public class Bot implements BotInterface {
         this.location = location;
         this.algorithm = a;
         this.hasFlag = false;
-        this.blocked = false;
     }
 
     /**

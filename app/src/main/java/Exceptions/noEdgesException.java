@@ -1,12 +1,12 @@
 package Exceptions;
 
-public class noEdgesException extends Exception {
+public class NoEdgesException extends Exception {
 
     /**
      * Creates a new instance of <code>NewException</code> without detail
      * message.
      */
-    public noEdgesException() {
+    public NoEdgesException() {
     }
 
     /**
@@ -15,7 +15,7 @@ public class noEdgesException extends Exception {
      *
      * @param msg the detail message.
      */
-    public noEdgesException(String msg) {
+    public NoEdgesException(String msg) {
         super(msg);
     }
 }

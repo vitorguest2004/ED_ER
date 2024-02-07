@@ -4,7 +4,7 @@ import Collections.EmptyCollectionException;
 import Collections.LinkedQueue;
 import Exceptions.InvalidOptionException;
 import Exceptions.NoMorePositionsException;
-import Exceptions.PositionOccupiedException;
+import Exceptions.PositionAlreadySelectedException;
 import Input.Input;
 
 import java.util.Iterator;
@@ -85,7 +85,7 @@ public class Game {
      * @throws PositionOccupiedException Se a posição já estiver ocupada por
      *                                   outra base.
      */
-    public void createBaseAndFlag(Integer vertex) throws EmptyCollectionException, PositionOccupiedException {
+    public void createBaseAndFlag(Integer vertex) throws EmptyCollectionException, PositionAlreadySelectedException {
         Player currentPlayer = players.dequeue();
         Player nextPlayer = null;
         Base base = null;
@@ -103,7 +103,7 @@ public class Game {
                         players.dequeue();
                         players.enqueue(currentPlayer);
                         players.enqueue(nextPlayer);
-                        throw new PositionOccupiedException("Posição Ocupada");
+                        throw new PositionAlreadySelectedException("Posição Ocupada");
                     }
                 } catch (NullPointerException e) {
                 }

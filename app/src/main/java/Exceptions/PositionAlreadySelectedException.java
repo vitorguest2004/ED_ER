@@ -1,12 +1,12 @@
 package Exceptions;
 
-public class PositionOccupiedException extends Exception {
+public class PositionAlreadySelectedException extends Exception {
 
     /**
      * Creates a new instance of <code>PositionOccupiedException</code> without
      * detail message.
      */
-    public PositionOccupiedException() {
+    public PositionAlreadySelectedException() {
     }
 
     /**
@@ -15,7 +15,7 @@ public class PositionOccupiedException extends Exception {
      *
      * @param msg the detail message.
      */
-    public PositionOccupiedException(String msg) {
+    public PositionAlreadySelectedException(String msg) {
         super(msg);
     }
 }

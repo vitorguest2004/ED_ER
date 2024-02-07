@@ -3,8 +3,9 @@ package Main;
 import Collections.EmptyCollectionException;
 import Exceptions.InvalidOptionException;
 import Exceptions.NoMorePositionsException;
+import Exceptions.PositionAlreadySelectedException;
 import Input.Input;
-import Exceptions.PositionOccupiedException;
+import Exceptions.PositionAlreadySelectedException;
 import CTFEntities.Map;
 import CTFEntities.Game;
 import CTFEntities.UnidirectionalMap;
@@ -21,7 +22,7 @@ public class main {
      * @throws Exceptions.NoMorePositionsException
      */
     public static void main(String[] args)
-            throws EmptyCollectionException, PositionOccupiedException, NoMorePositionsException {
+            throws EmptyCollectionException, PositionAlreadySelectedException, NoMorePositionsException {
         int option = 0, vertexes, density, base, bot;
 
         System.out.println("Início do jogo!");
@@ -62,7 +63,7 @@ public class main {
                                     } else {
                                         try {
                                             game.createBaseAndFlag(base);
-                                        } catch (PositionOccupiedException ex) {
+                                        } catch (PositionAlreadySelectedException ex) {
                                             System.out.println(ex.getMessage());
                                             base = -1;
                                         }
@@ -78,7 +79,7 @@ public class main {
                                     } else {
                                         try {
                                             game.createBaseAndFlag(base);
-                                        } catch (PositionOccupiedException ex) {
+                                        } catch (PositionAlreadySelectedException ex) {
                                             System.out.println(ex.getMessage());
                                             base = -1;
                                         }
@@ -234,7 +235,7 @@ public class main {
                         } else {
                             try {
                                 game2.createBaseAndFlag(base);
-                            } catch (PositionOccupiedException ex) {
+                            } catch (PositionAlreadySelectedException ex) {
                                 System.out.println(ex.getMessage());
                                 base = -1;
                             }
@@ -250,7 +251,7 @@ public class main {
                         } else {
                             try {
                                 game2.createBaseAndFlag(base);
-                            } catch (PositionOccupiedException ex) {
+                            } catch (PositionAlreadySelectedException ex) {
                                 System.out.println(ex.getMessage());
                                 base = -1;
                             }
